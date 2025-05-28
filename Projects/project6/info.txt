@@ -1,0 +1,2 @@
+Title - Telecom Company Customer Retention Dashboard 
+Description - Personal project to Develop Customer retention and Call center performance dashboard. 

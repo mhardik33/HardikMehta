@@ -1,0 +1,2 @@
+Title - GenAI API based Email scanning and Jira Task creation
+Description - Automated Power Automate flow to Summarize/Analyze Project manager's Emails in selected Outlook folder using GenAI API, Create a Task on Jira based on Prompted AI response 

@@ -1,0 +1,2 @@
+Title - Automated Global Update Sharing
+Description - Automated Power Automate flow to share Updates with live Analytics and Report in Power Bi

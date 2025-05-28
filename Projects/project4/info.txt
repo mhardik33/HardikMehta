@@ -1,0 +1,2 @@
+Title - GenAI API based Weekly Project Report genration in Power Bi
+Description - Automated Power Automate flow to Extract Report contents from Jira Filter subscription and generate weekly project status report 

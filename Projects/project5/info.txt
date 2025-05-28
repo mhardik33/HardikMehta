@@ -1,0 +1,2 @@
+Title - HR Dashboards for Diversity & Inclusion KPIs
+Description - Personal project to Develop D&I Performance Dashboards using sample datasets

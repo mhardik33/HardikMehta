@@ -1,0 +1,2 @@
+Title - Automated Club Member Registration
+Description - Automated flow for New club member registration with Live Analytics

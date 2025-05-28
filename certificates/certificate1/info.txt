@@ -1,0 +1,2 @@
+Title - PWC Power Bi Business Simulation
+Description - Advanced Power Bi functionalities, creating Dashboards with Custom Measures and Interactive visuals
