@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(projects => {
             // Generate HTML for each project
             projects.reverse().forEach(project => { // Reverse the array
-                fetch(`projects/${project.id}/info.txt`)
+                fetch(`Projects/${project.id}/info.txt`)
                     .then(response => response.text())
                     .then(text => {
                         const [titleLine, descriptionLine] = text.split('\n');
