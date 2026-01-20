@@ -1,4 +1,16 @@
 [
+    {   
+        "id": "certificate6",
+        "image": "certificates/certificate6/01.png"
+    },
+    {
+        "id": "certificate5",
+        "image": "certificates/certificate5/01.png"
+    },
+    {
+        "id": "certificate4",
+        "image": "certificates/certificate4/01.png"
+    },
     {
         "id": "certificate3",
         "image": "certificates/certificate3/01.png"
