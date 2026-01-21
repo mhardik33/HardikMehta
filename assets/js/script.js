@@ -2,12 +2,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const projectsContainer = document.getElementById('projects-container');
     const certificatesContainer = document.getElementById('certificates-container');
     const popout = document.getElementById('popout');
+    const descriptionPanel = document.getElementById('description-panel');
+    const toggleButton = document.querySelector('.description-collapse');
     const popoutImages = document.querySelector('.popout-images');
+    const popoutTitle = document.getElementById('popout-title');
+    const popoutDescriptionText = document.getElementById('popout-description-text');
     const closeButton = document.querySelector('.close');
     const prevButton = document.querySelector('.nav-button.prev');
     const nextButton = document.querySelector('.nav-button.next');
 
     let currentProjectImages = [];
+    let currentProjectTitle = '';
+    let currentProjectDescription = '';
     let currentIndex = 0;
 
     // Fetch projects from the JSON file
@@ -19,17 +25,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 fetch(`Projects/${project.id}/info.txt`)
                     .then(response => response.text())
                     .then(text => {
-                        const [titleLine, descriptionLine] = text.split('\n');
-                        const title = titleLine.replace('Title - ', '').trim();
-                        const description = descriptionLine.replace('Description - ', '').trim();
+                        const lines = text.split('\n');
+                        const title = lines[0].replace('Title - ', '').trim();
+                        const description = lines[1].replace('Description - ', '').trim();
+                        const detailed = lines[2] ? lines[2].replace('Detailed - ', '').trim() : description;
 
                         const projectHTML = `
                         <article class="work-item">
                             <div class="project-thumbnail">
                                 <h3>${title}</h3>
                                 <img src="${project.thumbnail}" alt="${title}" class="image fit thumb" />
-                                <p>${description}</p>
-                                <button class="view-button" data-images='${JSON.stringify(project.images)}'>View</button>
+                                <button class="view-button" data-images='${JSON.stringify(project.images)}' data-title='${title}' data-detailed='${detailed}'>View</button>
                             </div>
                         </article>
                     `;
@@ -41,9 +47,15 @@ document.addEventListener('DOMContentLoaded', function () {
             document.addEventListener('click', function (event) {
                 if (event.target.classList.contains('view-button')) {
                     currentProjectImages = JSON.parse(event.target.getAttribute('data-images'));
+                    currentProjectTitle = event.target.getAttribute('data-title');
+                    currentProjectDescription = event.target.getAttribute('data-detailed');
                     currentIndex = 0;
                     loadImage(currentIndex);
+                    popoutTitle.textContent = currentProjectTitle;
+                    popoutDescriptionText.innerHTML = `<p>${currentProjectDescription}</p>`;
                     popout.style.display = 'block';
+                    descriptionPanel.classList.add('show');
+                    toggleButton.style.display = 'flex';
                     updateNavigationButtons();
                 }
             });
@@ -58,9 +70,10 @@ fetch('certificates.json')
             fetch(`certificates/${certificate.id}/info.txt`)
                 .then(response => response.text())
                 .then(text => {
-                    const [titleLine, descriptionLine] = text.split('\n');
-                    const title = titleLine.replace('Title - ', '').trim();
-                    const description = descriptionLine.replace('Description - ', '').trim();
+                    const lines = text.split('\n');
+                    const title = lines[0].replace('Title - ', '').trim();
+                    const description = lines[1].replace('Description - ', '').trim();
+                    const detailed = lines[2] ? lines[2].replace('Detailed - ', '').trim() : description;
 
                     // Adjust the image path
                     const certificateImage = `certificates/${certificate.id}/01.png`;
@@ -71,7 +84,7 @@ fetch('certificates.json')
                                 <h3>${title}</h3>
                                 <img src="${certificateImage}" alt="${title}" class="image fit thumb" />
                                 <p>${description}</p>
-                                <button class="view-button" data-images='["${certificateImage}"]'>View</button>
+                                <button class="view-button" data-images='["${certificateImage}"]' data-title='${title}' data-detailed='${detailed}'>View</button>
                             </div>
                         </article>
                     `;
@@ -83,6 +96,8 @@ fetch('certificates.json')
     // Close popout
     closeButton.addEventListener('click', function () {
         popout.style.display = 'none';
+        descriptionPanel.classList.remove('show');
+        toggleButton.style.display = 'none';
     });
 
     // Previous image
@@ -119,5 +134,13 @@ fetch('certificates.json')
             prevButton.style.display = currentIndex > 0 ? 'block' : 'none';
             nextButton.style.display = currentIndex < currentProjectImages.length - 1 ? 'block' : 'none';
         }
+    }
+});
+
+// Toggle description panel (outside DOMContentLoaded to ensure it works)
+document.addEventListener('click', function (event) {
+    if (event.target.classList.contains('description-collapse')) {
+        const descriptionPanel = document.getElementById('description-panel');
+        descriptionPanel.classList.toggle('show');
     }
 });
