@@ -3368,6 +3368,7 @@ input, select, textarea {
 .resume-button-container {
     display: flex;
     justify-content: flex-end; /* Aligns the button to the right */
+    align-items: center; /* Vertically center all items */
     padding: 10px 20px; /* Standard padding */
     margin-bottom: 0; /* Remove extra margin below the button */
 }
@@ -3381,7 +3382,7 @@ input, select, textarea {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
+    margin: 4px 10px;
     cursor: pointer;
     border: 2px solid black; /* Add a black border */
     transition: all 0.3s ease; /* Add transition for smooth animation */
@@ -3404,6 +3405,26 @@ input, select, textarea {
     50% {
         transform: scale(1.1);
     }
+}
+
+/* Styling for the Contact Me link */
+.contact-link {
+    color: #333;
+    text-decoration: underline;
+    font-size: 14px;
+    margin: 4px 10px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    outline: none;
+    border: none;
+}
+
+.contact-link:hover {
+    color: #666;
+}
+
+.contact-link:focus {
+    outline: none;
 }
 
 /* Ensure no extra gap below the button */
