@@ -3,6 +3,7 @@
         "id": "project1",
         "thumbnail": "images/thumbs/01.png",
         "images": [
+            "Projects/project1/Images/BPMN.png",
             "Projects/project1/Images/01.png",
             "Projects/project1/Images/02.png",
             "Projects/project1/Images/03.png"
@@ -12,6 +13,7 @@
         "id": "project2",
         "thumbnail": "images/thumbs/02.png",
         "images": [
+            "Projects/project2/Images/BPMN.png",
             "Projects/project2/Images/01.png",
             "Projects/project2/Images/02.png"
         ]
@@ -20,6 +22,7 @@
         "id": "project3",
         "thumbnail": "images/thumbs/03.png",
         "images": [
+            "Projects/project3/Images/BPMN.png",
             "Projects/project3/Images/01.png"
         ]
     },
@@ -27,6 +30,7 @@
         "id": "project4",
         "thumbnail": "images/thumbs/04.png",
         "images": [
+            "Projects/project4/Images/BPMN.png",
             "Projects/project4/Images/01.png"
         ]
     },

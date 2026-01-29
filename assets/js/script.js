@@ -30,12 +30,27 @@ document.addEventListener('DOMContentLoaded', function () {
                         const description = lines[1].replace('Description - ', '').trim();
                         const detailed = lines[2] ? lines[2].replace('Detailed - ', '').trim() : description;
 
+                        // Check if BPMN image exists and prioritize it
+                        let sortedImages = [...project.images];
+                        const bpmnIndex = sortedImages.findIndex(img => img.toLowerCase().includes('bpmn'));
+                        if (bpmnIndex !== -1) {
+                            // Move BPMN image to the front
+                            const bpmnImage = sortedImages.splice(bpmnIndex, 1)[0];
+                            sortedImages.unshift(bpmnImage);
+                        }
+
+                        // Use BPMN image as thumbnail if it exists, otherwise use the first image
+                        let thumbnail = project.thumbnail;
+                        if (bpmnIndex !== -1) {
+                            thumbnail = sortedImages[0];
+                        }
+
                         const projectHTML = `
                         <article class="work-item">
                             <div class="project-thumbnail">
                                 <h3>${title}</h3>
-                                <img src="${project.thumbnail}" alt="${title}" class="image fit thumb" />
-                                <button class="view-button" data-images='${JSON.stringify(project.images)}' data-title='${title}' data-detailed='${detailed}'>View</button>
+                                <img src="${thumbnail}" alt="${title}" class="image fit thumb" />
+                                <button class="view-button" data-images='${JSON.stringify(sortedImages)}' data-title='${title}' data-detailed='${detailed}'>View</button>
                             </div>
                         </article>
                     `;
